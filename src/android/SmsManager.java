@@ -1,11 +1,18 @@
-package org.apache.cordova.smsSender;
+ï»¿package org.apache.cordova.smsSender;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaArgs;
+import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.widget.Toast;
 
 public class SmsManager {
 	private SmsListener smsListener;
@@ -16,10 +23,10 @@ public class SmsManager {
 	}
 
 	public void sendSMS(String phoneNumber, String message) {
-		// »ñÈ¡¶ÌĞÅ¹ÜÀíÆ÷
+		// è·å–çŸ­ä¿¡ç®¡ç†å™¨
 		android.telephony.SmsManager smsManager = android.telephony.SmsManager
 				.getDefault();
-		// ²ğ·Ö¶ÌĞÅÄÚÈİ£¨ÊÖ»ú¶ÌĞÅ³¤¶ÈÏŞÖÆ£©
+		// æ‹†åˆ†çŸ­ä¿¡å†…å®¹ï¼ˆæ‰‹æœºçŸ­ä¿¡é•¿åº¦é™åˆ¶ï¼‰
 		List<String> divideContents = smsManager.divideMessage(message);
 		for (String text : divideContents) {
 			smsManager.sendTextMessage(phoneNumber, null, text, null, null);
@@ -48,6 +55,8 @@ public class SmsManager {
 	}
 
 	public void startSend() {
+		int index = 0;
+		SmsUtils.smsIndex=0;
 		int total = phoneList.size();
 		SmsUtils.smsTotal = total;
 		for (int i = 0; i < total; i++) {
@@ -60,11 +69,11 @@ public class SmsManager {
 				}
 			}
 			while (SmsUtils.isCanceled)
-				return;
-			sendSMS(phoneList.get(i).phone, phoneList.get(i).message); // ·¢ËÍ³É¹¦
+				return; 
+			sendSMS(phoneList.get(i).phone, phoneList.get(i).message); // å‘é€æˆåŠŸ
 			SmsUtils.smsIndex = i + 1;
-			SmsUtils.smsStatus = "ÒÑ·¢ËÍ < " + SmsUtils.smsIndex + " >ÌõĞÅÏ¢";
-			smsListener.Message("·¢ËÍ³É¹¦");
+			SmsUtils.smsStatus = "å·²å‘é€ < " + SmsUtils.smsIndex + " >æ¡ä¿¡æ¯";
+			smsListener.Message("å‘é€æˆåŠŸ");
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -72,7 +81,7 @@ public class SmsManager {
 				e.printStackTrace();
 			}
 		}
-		SmsUtils.smsStatus = "ĞÅÏ¢È«²¿·¢ËÍÍê±Ï";
+		SmsUtils.smsStatus = "ä¿¡æ¯å…¨éƒ¨å‘é€å®Œæ¯•";
 
 	}
 

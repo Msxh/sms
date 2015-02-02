@@ -1,6 +1,9 @@
-package org.apache.cordova.smsSender;
+﻿package org.apache.cordova.smsSender;
+
+import java.util.List;
 
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaArgs;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaWebView;

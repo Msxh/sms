@@ -1,11 +1,11 @@
-package org.apache.cordova.smsSender;
+ï»¿package org.apache.cordova.smsSender;
 
 public class SmsUtils {
 
 	public static int smsIndex=0;
 	public static int smsTotal=0;
-	public static String smsStatus="Õı³£";
-	public static String smsOperString ="";  //²Ù×÷×´Ì¬
+	public static String smsStatus="æ­£å¸¸";
+	public static String smsOperString ="";  //æ“ä½œçŠ¶æ€
 	public static boolean isPaused=false;
 	public static boolean isCanceled = false;
 
