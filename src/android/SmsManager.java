@@ -3,16 +3,9 @@ package org.apache.cordova.smsSender;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaArgs;
-import org.apache.cordova.CordovaInterface;
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.widget.Toast;
 
 public class SmsManager {
 	private SmsListener smsListener;
@@ -55,7 +48,6 @@ public class SmsManager {
 	}
 
 	public void startSend() {
-		int index = 0;
 		int total = phoneList.size();
 		SmsUtils.smsTotal = total;
 		for (int i = 0; i < total; i++) {
